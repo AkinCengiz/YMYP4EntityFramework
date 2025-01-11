@@ -1,0 +1,7 @@
+﻿Student sınıfı oluşturun
+Alanları Firstname, lastname, email, stdNumber
+
+migration atılacak
+
+alanlara phone, classroom
+migration atılacak.
