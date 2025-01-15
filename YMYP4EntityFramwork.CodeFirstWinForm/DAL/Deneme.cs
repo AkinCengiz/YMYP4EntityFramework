@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace YMYP4EntityFramwork.CodeFirstWinForm.DAL;
-public class User
+public class Deneme
 {
 	public int Id { get; set; }
-	public string FirstName { get; set; }
-	public int LastName { get; set; }
-	public ICollection<Order> Orders { get; set; }
+	public string Name { get; set; }
+	public string Description { get; set; }
+
+
 }

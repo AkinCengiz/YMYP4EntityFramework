@@ -1,3 +1,4 @@
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using YMYP4EntityFramwork.CodeFirstWinForm.DAL;
 
 namespace YMYP4EntityFramwork.CodeFirstWinForm;
@@ -81,5 +82,69 @@ public partial class Form1 : Form
 	private void btnDelete2_Click(object sender, EventArgs e)
 	{
 		_productDal.Delete2(5);
+	}
+
+	private void getFull_Click(object sender, EventArgs e)
+	{
+		var products = _productDal.GetFullInfos();
+		products.ForEach(p =>
+			{
+				string message = $"Name : {p.Name} - Price : {p.Price} - Category : {p.Category.Name}";
+				MessageBox.Show(message);
+			}
+			);
+	}
+
+	private void btnFullCategories_Click(object sender, EventArgs e)
+	{
+		var productFeatures = _productDal.GetFullCategories();
+		List<object> products = new List<object>();
+		productFeatures.ForEach(p =>
+		{
+			var product = new
+			{
+				Name = p.Product.Name,
+				Price = p.Product.Price,
+				Stock = p.Product.Stock,
+				Category = p.Product.Category.Name,
+				Color = p.Color,
+				Height = p.Height,
+				Width = p.Width
+			};
+			products.Add(product);
+		});
+		dgvProducts.DataSource = products;
+
+	}
+
+	private void btnExplicit_Click(object sender, EventArgs e)
+	{
+		var category = _productDal.GetCategory();
+		MessageBox.Show($"Id : {category.Id} - Name : {category.Name} - Products : {category.Products}");
+
+
+		DgvProductFill(category);
+	}
+
+	public void DgvProductFill(Category category)
+	{
+		dgvProducts.DataSource = _productDal.ExplicitLoading(category);
+	}
+
+	private void btnProductMessage_Click(object sender, EventArgs e)
+	{
+		var product = _productDal.ProductExplicitLoading();
+		MessageBox.Show($"Name : {product.Name} - Price : {product.Price} - Color : {product.ProductFeature.Color}");
+	}
+
+	private void Form1_Load(object sender, EventArgs e)
+	{
+
+	}
+
+	private void btnLazyProduct_Click(object sender, EventArgs e)
+	{
+		var product = _productDal.GetProduct();
+		MessageBox.Show($"Name : {product.Name} - Price : {product.Price} Category : {product.Category.Name}");
 	}
 }

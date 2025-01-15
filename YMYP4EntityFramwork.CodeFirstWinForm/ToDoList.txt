@@ -5,3 +5,10 @@ migration atılacak
 
 alanlara phone, classroom
 migration atılacak.
+
+
+Order Table
+Id
+OrderDate
+Total
+UserId
