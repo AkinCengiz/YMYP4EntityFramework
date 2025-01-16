@@ -139,7 +139,8 @@ public partial class Form1 : Form
 
 	private void Form1_Load(object sender, EventArgs e)
 	{
-
+		//Product product = new Product();
+		//var cName = product.Category.Name;
 	}
 
 	private void btnLazyProduct_Click(object sender, EventArgs e)
